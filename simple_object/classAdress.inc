@@ -1,5 +1,4 @@
-<!-- /.inc extension is something like include but not executed on it's own
-/ --> 
+<!-- /.inc extension is something like include but not executed on it's own / --> 
 <?php 
 /** Classes
 * Physical address.
