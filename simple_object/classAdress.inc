@@ -1,4 +1,4 @@
-<!-- /.inc extension is something like include but not executed on it's own / --> 
+<!-- /.inc extension is something like php include file but not executed on it's own / --> 
 <?php 
 /** Classes
 * Physical address.
@@ -20,8 +20,14 @@ class Address {
 
 	// Name of the Country.
 	public $country_name;
-	// End of classes
+	
+// Primary key of an Address
+	protected $_address_id;
 
+//When the record was creted and last updated
+	protected $_time_created;
+	protected $_time_updated;
+ 
 /*FIRST METHOD
  *Display an address in HTML format
  *@return string 

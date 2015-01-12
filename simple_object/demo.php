@@ -21,4 +21,10 @@ echo '<tt><pre>' . var_export($address, TRUE) . '</pre></tt>';
 // Dislaying address by display method
 echo "<h2>Display address...</h2>";
 echo $address->display();
+
+// Testing protected access
+
+echo '<h2>Testing protected access</h2>';
+echo "Address ID: {$address->_address_id}";
+
 ?>
