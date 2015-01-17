@@ -7,4 +7,6 @@ class person{
 		echo $this->name;	
 	}
 }
+	$stefan = new person();
+	$stefan->get_name();
 ?>
