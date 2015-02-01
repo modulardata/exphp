@@ -11,6 +11,7 @@ echo '<tt><pre>' . var_export($address, TRUE) . '</pre></tt>';
 // Setting properties of Adress
 echo "<h2>Setting properties</h2>";
 $address->street_address_1 = '555 X Street';
+$address->street_address_2 = '311 X Street';
 $address->city_name = 'Repocity';
 $address->subdivision_name = 'State';
 $address->postal_code = '12345';
@@ -22,9 +23,8 @@ echo '<tt><pre>' . var_export($address, TRUE) . '</pre></tt>';
 echo "<h2>Display address...</h2>";
 echo $address->display();
 
-// Testing protected access
-
-echo '<h2>Testing protected access</h2>';
-echo "Address ID: {$address->_address_id}";
+echo '<h2>Testing magic __get and __set</h2>';
+unset($address->postal_code);
+echo $address->display();
 
 ?>
