@@ -15,6 +15,9 @@ $RECYCLE.BIN/
 *.msp
 *.php-tmp
 *.inc-tmp
+*.idea
+*.phpintel
+PDO/pdo_connect.php
 
 # Windows shortcuts
 *.lnk

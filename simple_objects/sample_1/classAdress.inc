@@ -16,7 +16,7 @@ class Address {
 	public $subdivision_name;
 
 	//Postal code.
-	protected $postal_code;
+	protected $_postal_code;
 
 	// Name of the Country.
 	public $country_name;
@@ -28,7 +28,13 @@ class Address {
 	protected $_time_created;
 	protected $_time_updated;
  
- 
+   /**
+  *Construct magic method
+  *@param array $data Optional array of property names and values.
+  */
+  function __construct($data = array()){
+    $this->_time_created =time();
+  } 
   /**
    * Magic __get.
    * @param string $name 
