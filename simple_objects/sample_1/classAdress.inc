@@ -1,9 +1,10 @@
 <!-- /.inc extension is something like php include file but not executed on it's own / --> 
-<?php 
+<?php
+
 /** Classes
 * Physical address.
 */
-class Address { 
+class Address{ 
 
 	//Street address
 	public $street_address_1;

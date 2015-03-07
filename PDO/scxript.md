@@ -26,6 +26,14 @@
 
 * Set of SQL queries executed as a unit
 * Operation is committed only if all parts succeed
-* Transaction can be rolled back if an erroe occurs
+* Transaction can be rolled back if an error occurs
 * Particularly useful for financial transfers
 * Prevents rows being modified by another connection
+
+
+#### 4. Fetching Results
+
+* fetch() gets the next row from a result set
+* fetchAll() creates an array containing all rows
+* fetchColumn() gets a single column from the next row
+* fetchObject() gets the next row as an object

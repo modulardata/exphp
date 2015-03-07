@@ -18,7 +18,8 @@ $RECYCLE.BIN/
 *.idea
 *.phpintel
 PDO/pdo_connect.php
-
+conf/*
+lab/*
 # Windows shortcuts
 *.lnk
 

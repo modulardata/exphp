@@ -18,8 +18,6 @@
 		echo "<p>$error</p>";
 	} 
 	?>
-
-
-
+	
 </body>
 </html>
