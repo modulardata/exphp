@@ -97,11 +97,6 @@ class Address {
    * @param mixed $value 
    */
   function __set($name, $value) {
-    // Only set valid address type id.
-    if ('address_type_id' == $name) {
-      $this->_setAddressTypeId($value);
-      return;
-    }
     // Allow anything to set the postal code.
     if ('postal_code' == $name) {
       $this->$name = $value;
