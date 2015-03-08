@@ -27,4 +27,21 @@ echo '<h2>Testing magic __get and __set</h2>';
 unset($address->postal_code);
 echo $address->display();
 
+echo "<h2>Testing Address __construct with array</h2>";
+$address_2 = new Address(array(
+								'street_address_1' => 'class 0101', 
+								'city_name' => 'BitCity', 
+								'subdivision_name' => 'Trion', 
+								'postal_code' => '101010', 
+								'country_name' => 'Republic', 
+								));
+
+echo $address_2->display();
+
+echo "<h2>Address __toString </h2>";
+echo $address_2;
+
+
+
+
 ?>
