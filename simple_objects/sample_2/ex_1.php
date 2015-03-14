@@ -5,6 +5,10 @@
 */
 class Log
 {
+
+	private $_FileName;
+	private $_Text;
+
 	/**
 	*	@desc  Wrirtes to a file
 	* 	@param str $fileName The name of the file
@@ -12,11 +16,16 @@ class Log
 	* */
 	public function Write($fileName, $text)
 	{
-		// Check file premmissions 
-		if (!is_writeable($fileName)) {
-			die('Change your CHMOD premissions to ' . $fileName);
-		}
-		// This will create a text file note
+		// Set Class Vars
+		$this->_FileName = $fileName;
+		$this->_Text = $text;
+
+		// Check Data
+		$this->_CheckPremission();
+		$this->_CheckText();
+
+
+		// Write the File
 		$handle = fopen($fileName, 'a+');
 
 		fwrite($handle, "\r" . $text);
@@ -25,11 +34,41 @@ class Log
 
 	public function Read($fileName)
 	{
-	// handle open and read 
-	  $handle = fopen($fileName, 'r');
-	// return via file get contents
-	  return file_get_contents($fileName);
+		$this->_FileName = $fileName;
+
+		$this->_CheckExists();
+
+		// handle open and read 
+		  $handle = fopen($fileName, 'r');
+		// return via file get contents
+		  return file_get_contents($fileName);
 	}
+
+	private function _CheckExists()
+	{
+		if (!file_exists($this->_FileName)) 
+		{
+			die('The file does not exists');				
+		}
+	}
+
+	private function _CheckPremission()
+	{
+		// Check file premmissions 
+		if (!is_writeable($this->_FileName)) 
+		{
+			die('Change your CHMOD premissions to ' . $this->_FileName);
+		}
+	}
+	private function _CheckText()
+	{
+		if (strlen($this->_Text) < 1) 
+		{
+			die('You must have more than one character for data ');
+		}
+	}
+
+
 }
 
 $log = new Log;
