@@ -71,10 +71,10 @@ class Log
 
 }
 
-$log = new Log;
+// $log = new Log;
 // Create a file
-$log->Write('note.txt', 'This is a scxript fiction');
+// $log->Write('note.txt', 'This is a scxript fiction');
 //Use the <pre> element when displaying text with unusual formatting, or some sort of computer code.
 echo "<pre>"; 
 // Read a note.txt file and echo in browser
-echo $log->Read('note.txt');
+// echo $log->Read('note.txt');
