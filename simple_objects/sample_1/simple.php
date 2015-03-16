@@ -5,11 +5,11 @@
  class a{
  	// Function in a Class and for All Extend Classs etc...
      function test(){
-         echo "a::test called";
+         echo "a::test called" . "<br>";
      }
      function func()
      {
-     	echo "a::func called";
+     	echo "a::func called" . "<br>";
      }     
  }
 
@@ -19,7 +19,7 @@
 class b extends a{
 	function test()
 	{
-		echo "b::test called";
+		echo "b::test called" . "<br>";
 	}
 }
 

@@ -21,6 +21,16 @@
 * Bind output values to varibles (optonal)
 * Fetch the results
 
+##### 2.1 Binding Values
+
+ [List of Constants](http://php.net/manual/en/pdo.constants.php)
+
+* Binding values to placeholders
+    - Use bindParam() or bindValue()
+    - Pass an array of values to the execute() method
+* Output values
+    - Use bindColumn()
+    - Named variables simplify display in web page
 
 #### 3. What is a Transaction ?
 

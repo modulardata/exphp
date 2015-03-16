@@ -26,7 +26,7 @@ and makes debugging much easier.
 * modularity
 	+ functionality is broken into task specific pieces
 * polymorphism
-	+ interact with classes without knowing which class it is
+	+ interact with classes without knowing which class it is =>this is a programming language feature that allows value diffrent data types to be handled using a uniform interface. 
 
 ### 2. What is a class?
 	
