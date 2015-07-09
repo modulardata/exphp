@@ -26,7 +26,24 @@ and makes debugging much easier.
 * modularity
 	+ functionality is broken into task specific pieces
 * polymorphism
-	+ interact with classes without knowing which class it is =>this is a programming language feature that allows value diffrent data types to be handled using a uniform interface. 
+	+ interact with classes without knowing which class it is =>this is a programming language feature that allows value diffrent data types to be handled using a uniform interface.
+
+##### 1.2 Why are objects useful ?
+ 
+* Code organization and maintainability
+* Add calarity, reduce complexity
+* Simple rules allow complex interactions
+* Emp[hasizes data over procedure
+* Code modularrity
+* Code reusability
+* Well-suited for databases
+
+##### 1.3 Acces Modifiers
+
+* public = Everywhere
+* private = This class only
+* protected = This class and subclass
+
 
 ### 2. What is a class?
 	
@@ -44,25 +61,120 @@ PHP functions that start with a double underscore – a “__” – are called 
 
 This is why they are called ‘magic’ functions – because they are never directly called, and they allow the programmer to do some pretty powerful things.
 
-##### 3.1 Facts
+##### 3.1 Facts 
 
 ###### PHP overloading:
 
-	* Dynamically create property or method that:
-		- has not been declared
-		- is not visible
-	* Dynamic entities processed using "magic methods"
+* Dynamically create property or method that:
+	- has not been declared
+	- is not visible
+* Dynamic entities processed using "magic methods"
 
 ###### Prons: Why use magic mehod?
 
-	* trigger custom behavior
-		- attept to access missing property
-		- missing method
-	* customize object creation
-	* default behavior like current time, login user...
+* trigger custom behavior
+	- attept to access missing property
+	- missing method
+* customize object creation
+* default behavior like current time, login user...
 
 ###### Cons for using magic methods:
 
-	- 3-20 times slower method call
-	- ignores scope
-	- breaks IDE code completion
+- 3-20 times slower method call
+- ignores scope
+- breaks IDE code completion
+
+### 4.Accessing Classes without Instantiation (Using Static Word or method)
+
+###### Facts
+
+* single connections for databases or services
+* avoids need for global scope (before PHP 5.3 version)
+* single instance of a class
+* no need to instantiaste member class
+* properties are stored at class level
+* static to regular method similarities
+	- naming convention
+	- scope
+	- returns a value
+* static to regular method diffrences
+	- cannot use $this 
+		-fatal error
+	- use self
+		- ``self::$property``
+
+######  Leveraging scope resolution operators
+
+* scope resolution operator 
+	- ``'::'``
+		- ``Class::method()``
+		- ``Class::$property``
+
+######  Setting constant values
+
+* class constants
+	* implementation
+		- ``ALL_CAPS_SEPARATED_BY_UNDERSCORES``
+		- should only contain simple values
+		- ``const NAME_NO_DOLLAR_SIGN = 44;``
+	* properties that never change ...
+		- error codes
+		- data structure names
+
+### 5. OOP Database and inproved extension
+
+* For example MySqli or PDO
+* both object-oriented and procedural API
+* interacts with a database
+* usully optimal to have one connection at the time
+
+
+### 6. Inheritance
+
+* fundamental object-oriented principle
+* is a relationship between classes and instances
+	- subclass (child) of another class (parent)
+	- define common functionality
+	- child extends parent
+
+###### Usage
+
+* a class must be defined to be extended
+* autoloading can be used to include missing class definitions
+
+######  Extending
+
+* can only extend one class's methods/properties at a time
+* cannot specify multiple classes at a time
+* can extend a class that extends another class
+* use 'extends' keyword 
+
+###### Abstracting
+
+* introduced in PHP 5
+* abstract classes cannot be instantiated
+* when extending, abstract methods must also be abstract
+	- if a class has an abstract method, then the class must be abstract
+* provides behavior of child classes
+
+###### Approaches to initialization
+
+* ``Abstract__construct`` - fragile, unwiedly
+* ``Abstract__init`` - call from class constructor
+
+###### Abstract scope
+
+* methods implementing must have some or less-restrictive scope
+	- public must stay public
+	- private can be made public
+	- prevents unexpected behavior
+
+markdown
+###### Object interface
+
+* specifies methods that a class must implement
+* is similar to abstract class
+* every method is abstract and public 
+* can extend another interface
+* ``sharing common API``
+	+ polymorphism		

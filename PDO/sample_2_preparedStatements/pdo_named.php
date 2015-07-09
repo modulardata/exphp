@@ -5,9 +5,14 @@ if (isset($_GET['search'])) {
         $sql = 'SELECT make, yearmade, mileage, price, description
                 FROM cars
                 LEFT JOIN makes USING (make_id)
+                WHERE make LIKE :make AND yearmade >= :yearmade AND price <= :price
                 ORDER BY price';
-        $result = $db->query($sql);
-        $errorInfo = $db->errorInfo();
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':make', '%' . $_GET['make'] . '%');
+        $stmt->bindParam(':yearmade', $_GET['yearmade'], PDO::PARAM_INT);
+        $stmt->bindParam(':price', $_GET['price'], PDO::PARAM_INT);
+        $stmt->execute();
+        $errorInfo = $stmt->errorInfo();
         if (isset($errorInfo[2])) {
             $error = $errorInfo[2];
         }
@@ -54,7 +59,10 @@ if (isset($_GET['search'])) {
     </p>
     </fieldset>
 </form>
-<?php if (isset($_GET['search'])) { ?>
+<?php if (isset($_GET['search'])) {
+    $row = $stmt->fetch();
+    if ($row) {
+    ?>
 <table>
     <tr>
         <th>Make</th>
@@ -63,7 +71,7 @@ if (isset($_GET['search'])) {
         <th>Price</th>
         <th>Description</th>
     </tr>
-    <?php while ($row = $result->fetch()) { ?>
+    <?php do { ?>
     <tr>
         <td><?php echo $row['make']; ?></td>
         <td><?php echo $row['yearmade']; ?></td>
@@ -71,8 +79,10 @@ if (isset($_GET['search'])) {
         <td>$<?php echo number_format($row['price'], 2); ?></td>
         <td><?php echo $row['description']; ?></td>
     </tr>
-    <?php } ?>
+    <?php } while ($row = $stmt->fetch()); ?>
 </table>
-<?php } ?>
+<?php } else {
+        echo '<p>No results found.</p>';
+    } } ?>
 </body>
 </html>

@@ -3,7 +3,7 @@
 /**
  * Physical address. 
  */
-abstract class Address implements Model {
+class Address {
   
   const ADDRESS_TYPE_RESIDENCE = 1;
   const ADDRESS_TYPE_BUSINESS = 2;
@@ -16,38 +16,38 @@ abstract class Address implements Model {
     Address::ADDRESS_TYPE_PARK => 'Park',
   );
   
+  
   // Street address.
   public $street_address_1;
   public $street_address_2;
-  
+
   // Name of the City.
   public $city_name;
-  
+
   // Name of the subdivison.
   public $subdivision_name;
-  
+
   // Postal code.
   protected $_postal_code;
-  
+
   // Name of the Country.
   public $country_name;
-  
+
   // Primary key of an Address.
   protected $_address_id;
-  
+
   // Address type id.
-  protected $_address_type_id;
-  
+  protected $address_type_id;
+
   // When the record was created and last updated.
   protected $_time_created;
   protected $_time_updated;
-  
+
   /**
    * Constructor.
    * @param array $data Optional array of property names and values.
    */
   function __construct($data = array()) {
-    $this->_init();
     $this->_time_created = time();
     
     // Ensure that the Address can be populated.
@@ -98,7 +98,11 @@ abstract class Address implements Model {
    * @param mixed $value 
    */
   function __set($name, $value) {
-
+    // only set valid address type id.
+    if ('address_type_id' == $name) {
+      $this->$name = $value;
+      return;      
+    }
     // Allow anything to set the postal code.
     if ('postal_code' == $name) {
       $this->$name = $value;
@@ -116,10 +120,6 @@ abstract class Address implements Model {
   function __toString() {
     return $this->display();
   }
-  /**
-  *Force extending classes to implement init method.
-  */
-  abstract protected function _init();
   
   /**
    * Guess the postal code given the subdivision and city name.
@@ -127,23 +127,7 @@ abstract class Address implements Model {
    * @return string 
    */
   protected function _postal_code_guess() {
-    $db = Database::getInstance();
-    $mysqli = $db->getConnection();
-    
-    $sql_query  = 'SELECT postal_code ';
-    $sql_query .= 'FROM location ';
-    
-    $city_name = $mysqli->real_escape_string($this->city_name);
-    $sql_query .= 'WHERE city_name = "' . $city_name . '" ';
-    
-    $subdivision_name = $mysqli->real_escape_string($this->subdivision_name);
-    $sql_query .= 'AND subdivision_name = "' . $subdivision_name . '" ';
-    
-    $result = $mysqli->query($sql_query);
-    
-    if ($row = $result->fetch_assoc()) {
-      return $row['postal_code'];
-    }
+    return 'LOOKUP';
   }
   
   /**
@@ -170,12 +154,11 @@ abstract class Address implements Model {
     
     return $output;
   }
-  
   /**
-   * Determine if an address type is valid.
-   * @param int $address_type_id
-   * @return boolean
-   */
+  * Determine if an address type is valid.
+  * @param int $address_type_id
+  * @return boolean
+  */
   static public function isValidAddressTypeId($address_type_id) {
     return array_key_exists($address_type_id, self::$valid_address_types);
   }
@@ -189,13 +172,6 @@ abstract class Address implements Model {
       $this->_address_type_id = $address_type_id;
     }
   }
-  /**
-  *Load an Address
-  *@param int $address_id
-  */
-  final public static function load($address_id){}  
-  /**
-  *Save an Address
-  */
-  final public function save(){}
+
+
 }

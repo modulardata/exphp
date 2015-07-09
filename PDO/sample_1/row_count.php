@@ -1,7 +1,8 @@
 <?php
 try {
     require_once '../pdo_connect.php';
-    $sql = 'SELECT name, meaning, gender FROM names
+    $sql = 'SELECT name, meaning, gender
+            FROM names
             ORDER BY name';
     $result = $db->query($sql);
     $numrows = $result->rowCount(); // Number of row's in table varible

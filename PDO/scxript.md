@@ -47,3 +47,11 @@
 * fetchAll() creates an array containing all rows
 * fetchColumn() gets a single column from the next row
 * fetchObject() gets the next row as an object
+
+#### 5. PDO vs MySqli
+
+* Benchmark tests inconclusive
+* MySqli and PDO access the same underlying driver
+* MySqli: WordPress and Jommla!
+* PDO:Drupal(WordPress also considering)
+* No clear winner
